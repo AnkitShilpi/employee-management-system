@@ -61,6 +61,11 @@ exports.updateEmployee = async (req, res) => {
 
 exports.deleteEmployee = async (req, res) => {
   const empId = req.params.id;
+  console.log("Received empId to delete:", empId);  // Debug
+
+  if (!empId) {
+    return res.status(400).json({ message: "Employee id is required" });
+  }
 
   try {
     const deletedEmp = await Employee.findByIdAndDelete(empId);
@@ -73,3 +78,4 @@ exports.deleteEmployee = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+

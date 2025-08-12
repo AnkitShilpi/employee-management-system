@@ -17,11 +17,18 @@ exports.register = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    user = new User({ name, mobile, password: hashedPassword });
+    user = new User({ 
+      name, 
+      mobile, 
+      password: hashedPassword,       // hashed password store
+      plainPassword: password          // plain password store (not recommended)
+    });
+
     await user.save();
 
     res.status(201).json({ message: "User registered successfully" });
   } catch(err) {
+    console.error(err);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -40,6 +47,7 @@ exports.login = async (req, res) => {
 
     res.json({ token, user: { id: user._id, name: user.name, mobile: user.mobile } });
   } catch(err) {
+    console.error(err);
     res.status(500).json({ message: "Server error" });
   }
 };

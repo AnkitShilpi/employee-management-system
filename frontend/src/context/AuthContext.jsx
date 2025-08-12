@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
       setUser(JSON.parse(savedUser));
       setToken(savedToken);
     }
-    setLoading(false); // 👈 Done loading
+    setLoading(false); 
   }, []);
 
   const login = (userData, tokenData) => {

@@ -45,7 +45,7 @@ const EmployeeList = ({ employees, onEdit, onDelete }) => {
                       Edit
                     </button>
                     <button
-                      onClick={() => onDelete(emp._id)}
+                      onClick={() => onDelete(emp)} // Pass full employee object
                       className="text-red-600 hover:underline"
                     >
                       Delete
