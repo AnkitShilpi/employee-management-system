@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = process.env.REACT_APP_API_URL; // localhost ko replace kiya
 
 export async function registerUser(data) {
   const res = await fetch(`${API_BASE}/auth/register`, {
@@ -39,7 +39,6 @@ export async function getEmployees(token) {
   return res.json();
 }
 
-// ✅ Delete Employee
 export async function deleteEmployee(id, token) {
   const res = await fetch(`${API_BASE}/employee/${id}`, {
     method: "DELETE",
@@ -50,7 +49,6 @@ export async function deleteEmployee(id, token) {
   return res.json();
 }
 
-// ✅ Update Employee
 export async function updateEmployee(id, data, token) {
   const res = await fetch(`${API_BASE}/employee/${id}`, {
     method: "PUT",
